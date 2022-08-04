@@ -152,7 +152,9 @@ export class JestRunner {
 
     const standardArgs = this.buildJestArgs(filePath, currentTestName, false);
     pushMany(config.args, standardArgs);
-    config.args.push('--runInBand');
+    if (!config.runtimeExecutable) {
+      config.args.push('--runInBand');
+    }
 
     return config;
   }
